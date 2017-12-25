@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>员工列表</title>
+    <title>校区ip查询工具</title>
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
@@ -21,6 +21,8 @@
             rel="stylesheet">
     <script
             src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <%--<script
+            src="${APP_PATH }/static/js/common.js"></script>--%>
 </head>
 <body>
 <!-- 员工修改的模态框 -->
@@ -30,27 +32,91 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">员工修改</h4>
+                <h4 class="modal-title">修改信息</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <label class="col-sm-2 control-label">empName</label>
                         <div class="col-sm-10">
                             <p class="form-control-static" id="empName_update_static"></p>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">email</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="email" class="form-control" id="email_update_input"
-                                   placeholder="email@atguigu.com">
+                        <label class="col-sm-3 control-label">校区名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="campusName" class="form-control" id="campus_name_update_input"
+                                   placeholder="请输入校区名称">
                             <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">gender</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">网络地址段</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="networkAddress" class="form-control" id="network_address_update_input"
+                                   placeholder="请输入网络地址段">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">掩码</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="mask" class="form-control" id="mask_update_input"
+                                   placeholder="请输入掩码">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">IP地址</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="ip" class="form-control" id="ip_update_input"
+                                   placeholder="请输入IP地址">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">使用设备</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="usingEquipment" class="form-control" id="using_equipment_update_input"
+                                   placeholder="请输入使用设备">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">使用部门</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="usingDepartment" class="form-control" id="using_department_update_input"
+                                   placeholder="请输入使用部门">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">存放位置</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="storagePosition" class="form-control" id="storage_position_update_input"
+                                       placeholder="请输入存放位置">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="username" class="form-control" id="username_update_input"
+                                       placeholder="请输入用户名">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="remarks" class="form-control" id="remarks_update_input"
+                                       placeholder="请输入备注">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                 <%--   <div class="form-group">
+                        <label class="col-sm-3 control-label">gender</label>
+                        <div class="col-sm-8">
                             <label class="radio-inline">
                                 <input type="radio" name="gender" id="gender1_update_input" value="M" checked="checked">
                                 男
@@ -61,13 +127,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">deptName</label>
+                        <label class="col-sm-3 control-label">deptName</label>
                         <div class="col-sm-4">
                             <!-- 部门提交部门id即可 -->
                             <select class="form-control" name="dId">
                             </select>
                         </div>
-                    </div>
+                    </div>--%>
                 </form>
             </div>
             <div class="modal-footer">
@@ -86,43 +152,80 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">员工添加</h4>
+                <h4 class="modal-title" id="myModalLabel">信息添加</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">empName</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="empName" class="form-control" id="empName_add_input"
-                                   placeholder="empName">
+                        <label class="col-sm-3 control-label">校区名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="campusName" class="form-control" id="campus_name_add_input"
+                                   placeholder="请输入校区名称">
                             <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">email</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="email" class="form-control" id="email_add_input"
-                                   placeholder="email@atguigu.com">
+                        <label class="col-sm-3 control-label">网络地址段</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="networkAddress" class="form-control" id="network_address_add_input"
+                                   placeholder="请输入网络地址段">
                             <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">gender</label>
-                        <div class="col-sm-10">
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" id="gender1_add_input" value="M" checked="checked"> 男
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" id="gender2_add_input" value="F"> 女
-                            </label>
+                        <label class="col-sm-3 control-label">掩码</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="mask" class="form-control" id="mask_add_input"
+                                   placeholder="请输入掩码">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">deptName</label>
-                        <div class="col-sm-4">
-                            <!-- 部门提交部门id即可 -->
-                            <select class="form-control" name="dId">
-                            </select>
+                        <label class="col-sm-3 control-label">IP地址</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="ip" class="form-control" id="ip_add_input"
+                                   placeholder="请输入IP地址">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">使用设备</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="usingEquipment" class="form-control" id="using_equipment_add_input"
+                                   placeholder="请输入使用设备">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">使用部门</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="usingDepartment" class="form-control" id="using_department_add_input"
+                                   placeholder="请输入使用部门">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">存放位置</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="storagePosition" class="form-control" id="storage_position_add_input"
+                                   placeholder="请输入存放位置">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="username" class="form-control" id="username_add_input"
+                                   placeholder="请输入用户名">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="remarks" class="form-control" id="remarks_add_input"
+                                   placeholder="请输入备注">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                 </form>
@@ -141,16 +244,34 @@
     <!-- 标题 -->
     <div class="row">
         <div class="col-md-12">
-            <h1>SSM-CRUD</h1>
+            <h1>校区ip查询</h1>
         </div>
+
     </div>
     <!-- 按钮 -->
-    <div class="row">
+    <div class="row" style="padding-bottom: 10px;margin-left: 130px">
         <div class="col-md-4 col-md-offset-8">
             <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
-            <button class="btn btn-danger" id="emp_delete_all_btn">删除</button>
+            <button class="btn btn-danger" id="emp_delete_all_btn">批量删除</button>
+            <button class="btn btn-info" id="import_btn">批量导入</button>
+            <button class="btn btn-info" id="export_btn">导出</button>
         </div>
     </div>
+    <form class="form-inline" style="float: right;margin-right: 10px;padding-right: 30px;padding-bottom: 20px">
+        <div class="form-group" style="margin-right: 5px">
+            <label for="search_campus">校区名称</label>
+            <input type="text" class="form-control" id="search_campus" name="search_campus" placeholder="请输入要查找的校区">
+        </div>
+        <div class="form-group">
+            <label for="search_address" style="margin-right: 5px">网络地址段</label>
+            <input type="text" class="form-control" id="search_address" name="search_address" placeholder="请输入要查找的网络地址段">
+        </div>
+        <div class="form-group">
+            <label for="search_ip" style="margin-right: 5px">IP地址</label>
+            <input type="text" class="form-control" id="search_ip" name="search_ip" placeholder="请输入要查询的IP地址">
+        </div>
+        <button type="button" class="btn btn-default" id="search_btn">搜索</button>
+    </form>
     <!-- 显示表格数据 -->
     <div class="row">
         <div class="col-md-12">
@@ -161,10 +282,11 @@
                         <input type="checkbox" id="check_all"/>
                     </th>
                     <th>#</th>
-                    <th>empName</th>
+                    <%--<th>empName</th>
                     <th>gender</th>
                     <th>email</th>
-                    <th>deptName</th>
+                    <th>deptName</th>--%>
+                    <th>校区名称</th><th>网络地址段</th><th>掩码</th><th>ip地址</th><th>使用设备</th><th>使用部门</th><th>存放位置</th><th>用户名</th><th>备注</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -186,6 +308,7 @@
     </div>
 
 </div>
+<%--<input type="hidden" id="corp_id" name="corp_id" value="${}" />--%>
 <script type="text/javascript">
 
     var totalRecord, currentPage;
@@ -195,9 +318,12 @@
         to_page(1);
     });
 
+    $("#search_btn").click(function(){
+        to_page_condition(1);
+    });
     function to_page(pn) {
         $.ajax({
-            url: "${APP_PATH}/emps",
+            url: "${APP_PATH}/datas",
             data: "pn=" + pn,
             type: "GET",
             success: function (result) {
@@ -211,6 +337,29 @@
             }
         });
     }
+//条件查询
+    function to_page_condition(pn) {
+        $.ajax({
+            url: "${APP_PATH}/dataCondition",
+            data: {"pn": pn,"search_campus":$("#search_campus").val(),"search_address":$("#search_address").val(),"search_ip":$("#search_ip").val()},
+            type: "GET",
+            success: function (result) {
+//                alert(result.extend.searchMap.search_campus);
+                $("#search_campus").val(result.extend.searchMap.search_campus);
+                $("#search_address").val(result.extend.searchMap.search_address);
+                $("#search_ip").val(result.extend.searchMap.search_ip);
+                //console.log(result);
+                //1、解析并显示员工数据
+                build_emps_table(result);
+                //2、解析并显示分页信息
+                build_page_info(result);
+                //3、解析显示分页条数据
+                build_page_nav(result);
+
+            }
+        });
+    }
+
 
     function build_emps_table(result) {
         //清空table表格
@@ -218,11 +367,17 @@
         var emps = result.extend.pageInfo.list;
         $.each(emps, function (index, item) {
             var checkBoxTd = $("<td><input type='checkbox' class='check_item'/></td>");
-            var empIdTd = $("<td></td>").append(item.empId);
-            var empNameTd = $("<td></td>").append(item.empName);
-            var genderTd = $("<td></td>").append(item.gender == 'M' ? "男" : "女");
-            var emailTd = $("<td></td>").append(item.email);
-            var deptNameTd = $("<td></td>").append(item.department.deptName);
+            var id= $("<td></td>").append(item.id);
+            var campus_name= $("<td></td>").append(item.campusName);
+            var network_address= $("<td></td>").append(item.networkAddress);
+            var mask= $("<td></td>").append(item.mask);
+            var ip= $("<td></td>").append(item.ip);
+            var using_equipment= $("<td></td>").append(item.usingEquipment);
+            var using_department= $("<td></td>").append(item.usingDepartment);
+            var storage_position= $("<td></td>").append(item.storagePosition);
+            var username= $("<td></td>").append(item.username);
+//            var password= $("<td></td>").append(item.password);
+            var remarks= $("<td></td>").append(item.remarks);
             /**
              <button class="">
              <span class="" aria-hidden="true"></span>
@@ -232,20 +387,26 @@
             var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
             //为编辑按钮添加一个自定义的属性，来表示当前员工id
-            editBtn.attr("edit-id", item.empId);
+            editBtn.attr("edit-id", item.id);
             var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
             //为删除按钮添加一个自定义的属性来表示当前删除的员工id
-            delBtn.attr("del-id", item.empId);
+            delBtn.attr("del-id", item.id);
             var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn);
             //var delBtn =
             //append方法执行完成以后还是返回原来的元素
             $("<tr></tr>").append(checkBoxTd)
-                .append(empIdTd)
-                .append(empNameTd)
-                .append(genderTd)
-                .append(emailTd)
-                .append(deptNameTd)
+                .append(id)
+                .append(campus_name)
+                .append(network_address)
+                .append(mask)
+                .append(ip)
+                .append(using_equipment)
+                .append(using_department)
+                .append(storage_position)
+                .append(username)
+//                .append(password)
+                .append(remarks)
                 .append(btnTd)
                 .appendTo("#emps_table tbody");
         });
@@ -276,10 +437,10 @@
         } else {
             //为元素添加点击翻页的事件
             firstPageLi.click(function () {
-                to_page(1);
+                to_page_condition(1);
             });
             prePageLi.click(function () {
-                to_page(result.extend.pageInfo.pageNum - 1);
+                to_page_condition(result.extend.pageInfo.pageNum - 1);
             });
         }
 
@@ -291,10 +452,10 @@
             lastPageLi.addClass("disabled");
         } else {
             nextPageLi.click(function () {
-                to_page(result.extend.pageInfo.pageNum + 1);
+                to_page_condition(result.extend.pageInfo.pageNum + 1);
             });
             lastPageLi.click(function () {
-                to_page(result.extend.pageInfo.pages);
+                to_page_condition(result.extend.pageInfo.pages);
             });
         }
 
@@ -309,7 +470,7 @@
                 numLi.addClass("active");
             }
             numLi.click(function () {
-                to_page(item);
+                to_page_condition(item);
             });
             ul.append(numLi);
         });
@@ -332,6 +493,7 @@
     //点击新增按钮弹出模态框。
     $("#emp_add_modal_btn").click(function () {
         //清除表单数据（表单完整重置（表单的数据，表单的样式））
+//        alert(APP_PATH);
         reset_form("#empAddModal form");
         //s$("")[0].reset();
         //发送ajax请求，查出部门信息，显示在下拉列表中
@@ -340,6 +502,17 @@
         $("#empAddModal").modal({
             backdrop: "static"
         });
+    });
+//批量上传，跳转到import.jsp
+    $("#import_btn").click(function () {
+
+        location.href = "gotoImport" ;
+//        window.location.href='data/gotoImport';
+    });
+     $("#export_btn").click(function () {
+
+        location.href = "/excel/gotoExport" ;
+//        window.location.href='data/gotoImport';
     });
 
     //查出所有的部门信息并显示在下拉列表中
@@ -432,18 +605,21 @@
     $("#emp_save_btn").click(function () {
         //1、模态框中填写的表单数据提交给服务器进行保存
         //1、先对要提交给服务器的数据进行校验
-        if (!validate_add_form()) {
+       /* if (!validate_add_form()) {
             return false;
         }
         ;
         //1、判断之前的ajax用户名校验是否成功。如果成功。
         if ($(this).attr("ajax-va") == "error") {
             return false;
-        }
-
+        }*/
+//alert( $("#empAddModal form").serialize())
         //2、发送ajax请求保存员工
         $.ajax({
-            url: "${APP_PATH}/emp",
+          /*  beforeSend : function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            },*/
+            url: "${APP_PATH}/dataq",
             type: "POST",
             data: $("#empAddModal form").serialize(),
             success: function (result) {
@@ -455,7 +631,7 @@
 
                     //2、来到最后一页，显示刚才保存的数据
                     //发送ajax请求显示最后一页数据即可
-                    to_page(totalRecord);
+                    to_page_condition(totalRecord);
                 } else {
                     //显示失败信息
                     //console.log(result);
@@ -477,11 +653,11 @@
     //1）、可以在创建按钮的时候绑定。    2）、绑定点击.live()
     //jquery新版没有live，使用on进行替代
     $(document).on("click", ".edit_btn", function () {
-        //alert("edit");
+//        alert("edit");
 
 
         //1、查出部门信息，并显示部门列表
-        getDepts("#empUpdateModal select");
+//        getDepts("#empUpdateModal select");
         //2、查出员工信息，显示员工信息
         getEmp($(this).attr("edit-id"));
 
@@ -494,16 +670,28 @@
 
     function getEmp(id) {
         $.ajax({
-            url: "${APP_PATH}/emp/" + id,
+            url: "${APP_PATH}/data/" + id,
             type: "GET",
             success: function (result) {
-                //console.log(result);
-                var empData = result.extend.emp;
-                $("#empName_update_static").text(empData.empName);
-                $("#email_update_input").val(empData.email);
-                $("#empUpdateModal input[name=gender]").val([empData.gender]);
-                $("#empUpdateModal select").val([empData.dId]);
+
+                console.log("---->"+result);
+                var myData = result.extend.das;
+
+
+//                alert(myData.campusName);
+                $("#campus_name_update_input").val(myData.campusName);
+                $("#network_address_update_input").val(myData.networkAddress);
+                $("#mask_update_input").val(myData.mask);
+                $("#ip_update_input").val(myData.ip);
+                $("#using_equipment_update_input").val(myData.usingEquipment);
+                $("#using_department_update_input").val(myData.usingDepartment);
+                $("#storage_position_update_input").val(myData.storagePosition);
+                $("#username_update_input").val(myData.username);
+                $("#remarks_update_input").val(myData.remarks);
+            /*    $("#empUpdateModal input[name=gender]").val([myData.gender]);
+                $("#empUpdateModal select").val([myData.dId]);*/
             }
+
         });
     }
 
@@ -513,24 +701,38 @@
         //1、校验邮箱信息
         var email = $("#email_update_input").val();
         var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        if (!regEmail.test(email)) {
-            show_validate_msg("#email_update_input", "error", "邮箱格式不正确");
+        var regIp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+        var ip =  $("#ip_update_input").val();
+        var address =  $("#network_address_update_input").val();
+        /*if (!regIp.test(ip)) {
+            show_validate_msg("#ip_update_input", "error", "IP格式不正确");
             return false;
         } else {
             show_validate_msg("#email_update_input", "success", "");
         }
 
+        if (!regIp.test(address)) {
+            show_validate_msg("#network_address_update_input", "error", "网络地址段格式不正确");
+            return false;
+        } else {
+            show_validate_msg("#network_address_update_input", "success", "");
+        }*/
+//alert($("#empUpdateModal form").serialize());
         //2、发送ajax请求保存更新的员工数据
         $.ajax({
-            url: "${APP_PATH}/emp/" + $(this).attr("edit-id"),
+            url: "${APP_PATH}/dataq/" + $(this).attr("edit-id"),
             type: "PUT",
             data: $("#empUpdateModal form").serialize(),
             success: function (result) {
-                //alert(result.msg);
+
+//                alert(result.msg);
                 //1、关闭对话框
                 $("#empUpdateModal").modal("hide");
                 //2、回到本页面
-                to_page(currentPage);
+                to_page_condition(currentPage);
+            },
+            error: function(result) {
+                alert("put请求失败");
             }
         });
     });
@@ -538,18 +740,18 @@
     //单个删除
     $(document).on("click", ".delete_btn", function () {
         //1、弹出是否确认删除对话框
-        var empName = $(this).parents("tr").find("td:eq(2)").text();
-        var empId = $(this).attr("del-id");
+        var ipName = $(this).parents("tr").find("td:eq(5)").text();
+        var id = $(this).attr("del-id");
         //alert($(this).parents("tr").find("td:eq(1)").text());
-        if (confirm("确认删除【" + empName + "】吗？")) {
+        if (confirm("确认删除【" + ipName + "】吗？")) {
             //确认，发送ajax请求删除即可
             $.ajax({
-                url: "${APP_PATH}/emp/" + empId,
+                url: "${APP_PATH}/data/" + id,
                 type: "DELETE",
                 success: function (result) {
                     alert(result.msg);
                     //回到本页
-                    to_page(currentPage);
+                    to_page_condition(currentPage);
                 }
             });
         }
@@ -573,27 +775,27 @@
     //点击全部删除，就批量删除
     $("#emp_delete_all_btn").click(function () {
         //
-        var empNames = "";
+        var ipNames = "";
         var del_idstr = "";
         $.each($(".check_item:checked"), function () {
             //this
-            empNames += $(this).parents("tr").find("td:eq(2)").text() + ",";
+            ipNames += $(this).parents("tr").find("td:eq(5)").text() + ",";
             //组装员工id字符串
             del_idstr += $(this).parents("tr").find("td:eq(1)").text() + "-";
         });
-        //去除empNames多余的,
-        empNames = empNames.substring(0, empNames.length - 1);
+        //ipNames,
+        ipNames = ipNames.substring(0, ipNames.length - 1);
         //去除删除的id多余的-
         del_idstr = del_idstr.substring(0, del_idstr.length - 1);
-        if (confirm("确认删除【" + empNames + "】吗？")) {
+        if (confirm("确认删除【" + ipNames + "】吗？")) {
             //发送ajax请求删除
             $.ajax({
-                url: "${APP_PATH}/emp/" + del_idstr,
+                url: "${APP_PATH}/data/" + del_idstr,
                 type: "DELETE",
                 success: function (result) {
                     alert(result.msg);
                     //回到当前页面
-                    to_page(currentPage);
+                    to_page_condition(currentPage);
                 }
             });
         }

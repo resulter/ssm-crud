@@ -45,7 +45,10 @@
 		<constructor-arg name="executorType" value="BATCH"></constructor-arg>
 	</bean>
 	<!--=============================================  -->
-
+	<!-- 定义文件上传解析器 -->
+	<bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
 	<!-- ===============事务控制的配置 ================-->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<!--控制住数据源  -->

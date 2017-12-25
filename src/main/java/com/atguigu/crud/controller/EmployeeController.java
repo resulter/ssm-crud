@@ -163,6 +163,7 @@ public class EmployeeController {
 	@RequestMapping(value="/emp",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg saveEmp(@Valid Employee employee,BindingResult result){
+		System.out.println("数据" + employee);
 		if(result.hasErrors()){
 			//校验失败，应该返回失败，在模态框中显示校验失败的错误信息
 			Map<String, Object> map = new HashMap();
